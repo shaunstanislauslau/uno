@@ -1,4 +1,4 @@
-﻿#if !NET461 && !__WASM__
+﻿#if !NET461 && !NETSTANDARD2_0
 using Uno.Extensions;
 using Uno.Diagnostics.Eventing;
 using Windows.UI.Xaml.Automation.Peers;
@@ -96,7 +96,7 @@ namespace Windows.UI.Xaml.Controls
 			_successfullyOpenedImage = imageSource;
 		}
 
-		#region Stretch
+#region Stretch
 		public Stretch Stretch
 		{
 			get { return (Stretch)this.GetValue(StretchProperty); }
@@ -109,9 +109,9 @@ namespace Windows.UI.Xaml.Controls
 			((Image)s).OnStretchChanged((Stretch)e.NewValue, (Stretch)e.OldValue)));
 
 		partial void OnStretchChanged(Stretch newValue, Stretch oldValue);
-		#endregion
+#endregion
 
-		#region Source
+#region Source
 		public ImageSource Source
 		{
 			get { return (ImageSource)this.GetValue(SourceProperty); }
@@ -160,7 +160,7 @@ namespace Windows.UI.Xaml.Controls
 			TryOpenImage();
 		}
 
-		#endregion
+#endregion
 
 		partial void OnLoadedPartial()
 		{

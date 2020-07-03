@@ -17,7 +17,7 @@ using AppKit;
 using View = AppKit.NSView;
 #elif XAMARIN_ANDROID
 using View = Android.Views.View;
-#elif NET461 || __WASM__
+#elif NET461 || NETSTANDARD2_0
 using View = Windows.UI.Xaml.FrameworkElement;
 #endif
 
