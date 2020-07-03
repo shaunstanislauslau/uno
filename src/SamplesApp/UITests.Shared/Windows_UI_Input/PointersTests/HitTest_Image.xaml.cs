@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Uno.UI.Samples.Controls;
-#if __IOS__ || __MACOS__ || __ANDROID__
-using _FrameworkElement = Windows.UI.Xaml.IFrameworkElement;
-#else
-using _FrameworkElement = Windows.UI.Xaml.FrameworkElement;
-#endif
 
 namespace UITests.Windows_UI_Input.PointersTests
 {
@@ -17,25 +12,26 @@ namespace UITests.Windows_UI_Input.PointersTests
 		public HitTest_Image()
 		{
 			this.InitializeComponent();
-
+#if __WASM__
 			foreach (var elt in GetElements())
 			{
 				elt.PointerPressed += (snd, e) =>
 				{
 					e.Handled = true;
 					LastPressed.Text = elt.Name;
-					LastPressedSrc.Text = (e.OriginalSource as _FrameworkElement)?.Name ?? "-unknown-";
+					LastPressedSrc.Text = (e.OriginalSource as FrameworkElement)?.Name ?? "-unknown-";
 				};
 				elt.PointerMoved += (snd, e) =>
 				{
 					e.Handled = true;
 					LastHovered.Text = elt.Name;
-					LastHoveredSrc.Text = (e.OriginalSource as _FrameworkElement)?.Name ?? "-unknown-";
+					LastHoveredSrc.Text = (e.OriginalSource as FrameworkElement)?.Name ?? "-unknown-";
 				};
 			}
+#endif
 		}
 
-		private IEnumerable<_FrameworkElement> GetElements()
+		private IEnumerable<FrameworkElement> GetElements()
 		{
 			yield return Root;
 

@@ -17,7 +17,10 @@ namespace SamplesApp.UITests.Windows_UI_Xaml_Input
 	{
 		private const string _sample = "UITests.Windows_UI_Input.PointersTests.HitTest_Image";
 
-		[Test] [AutoRetry] public void When_Image()
+		[Test]
+		[AutoRetry]
+		[ActivePlatforms(Platform.Browser)] // Image is NOT a FrameworkElement on iOS and Android
+		public void When_Image()
 		{
 			var element = "TheImage";
 
