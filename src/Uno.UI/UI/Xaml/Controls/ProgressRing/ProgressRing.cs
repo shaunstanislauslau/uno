@@ -1,4 +1,4 @@
-﻿#if XAMARIN || __WASM__
+﻿#if XAMARIN || __WASM__ || __NETSTD_REFERENCE__
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,7 +19,7 @@ namespace Windows.UI.Xaml.Controls
 		}
 #endif
 
-#if !__WASM__ && !__MACOS__
+#if !__WASM__ && !__MACOS__ && !__NETSTD_REFERENCE__
 		#region Foreground
 
 		/// <summary>
@@ -36,7 +36,7 @@ namespace Windows.UI.Xaml.Controls
 		}
 
 		public static readonly DependencyProperty ForegroundProperty =
-			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ProgressRing), new PropertyMetadata(SolidColorBrushHelper.Black, OnForegroundChanged));
+			DependencyProperty.Register("Foreground", typeof(Brush), typeof(ProgressRing), new PropertyMetadata(defaultValue: SolidColorBrushHelper.Black, propertyChangedCallback: OnForegroundChanged));
 
 		#endregion
 #endif
@@ -53,7 +53,7 @@ namespace Windows.UI.Xaml.Controls
 		}
 
 		public static readonly DependencyProperty IsActiveProperty =
-			DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(false, OnIsActiveChanged));
+			DependencyProperty.Register("IsActive", typeof(bool), typeof(ProgressRing), new PropertyMetadata(defaultValue: false, propertyChangedCallback: OnIsActiveChanged));
 
 		#endregion
 	}
