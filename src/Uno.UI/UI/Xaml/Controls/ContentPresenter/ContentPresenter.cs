@@ -1020,5 +1020,7 @@ namespace Windows.UI.Xaml.Controls
 				measuredSize.Height + padding.Top + padding.Bottom + borderThickness.Top + borderThickness.Bottom
 			);
 		}
+
+		private protected override Thickness GetBorderThickness() => BorderThickness;
 	}
 }
